@@ -60,11 +60,26 @@
 
     <script src="carrinho.js"></script>
     <script>
-        document.getElementById("btn-tela-cheia").addEventListener("click", () => {
-            const f = document.getElementById("jogo");
-            if (f.requestFullscreen) f.requestFullscreen();
-            else if (f.webkitRequestFullscreen) f.webkitRequestFullscreen();
-        });
-    </script>
+    const jogo = document.getElementById("jogo");
+
+    // Teclas que o jogo usa: impede que rolem a página
+    const teclasJogo = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+    window.addEventListener("keydown", (e) => {
+        if (teclasJogo.includes(e.key) || e.code === "Space") {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // Dá o foco do teclado ao jogo ao carregar e ao clicar nele
+    jogo.addEventListener("load", () => jogo.contentWindow.focus());
+    document.querySelector(".jogo-frame").addEventListener("click", () => jogo.contentWindow.focus());
+
+    // Botão de tela cheia
+    document.getElementById("btn-tela-cheia").addEventListener("click", () => {
+        if (jogo.requestFullscreen) jogo.requestFullscreen();
+        else if (jogo.webkitRequestFullscreen) jogo.webkitRequestFullscreen();
+        jogo.contentWindow.focus();
+    });
+</script>
 </body>
 </html>

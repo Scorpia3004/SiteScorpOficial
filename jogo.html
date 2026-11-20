@@ -61,17 +61,32 @@
     <script src="carrinho.js"></script>
     <script>
     const jogo = document.getElementById("jogo");
-
-    // Teclas que o jogo usa: impede que rolem a página
     const teclasJogo = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-    window.addEventListener("keydown", (e) => {
+
+    function bloquearRolagem(e) {
         if (teclasJogo.includes(e.key) || e.code === "Space") {
             e.preventDefault();
         }
-    }, { passive: false });
+    }
 
-    // Dá o foco do teclado ao jogo ao carregar e ao clicar nele
-    jogo.addEventListener("load", () => jogo.contentWindow.focus());
+    // Bloqueia na página
+    window.addEventListener("keydown", bloquearRolagem, { passive: false });
+
+    // Bloqueia também dentro do jogo (iframe)
+    function configurarJogo() {
+        try {
+            jogo.contentWindow.removeEventListener("keydown", bloquearRolagem);
+            jogo.contentWindow.addEventListener("keydown", bloquearRolagem, { passive: false });
+            jogo.contentWindow.focus();
+        } catch (err) {
+            console.warn("Não foi possível acessar o iframe:", err);
+        }
+    }
+
+    jogo.addEventListener("load", configurarJogo);
+    if (jogo.contentDocument && jogo.contentDocument.readyState === "complete") configurarJogo();
+
+    // Dá o foco ao jogo ao clicar na área dele
     document.querySelector(".jogo-frame").addEventListener("click", () => jogo.contentWindow.focus());
 
     // Botão de tela cheia

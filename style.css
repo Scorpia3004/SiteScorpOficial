@@ -348,7 +348,11 @@ header{
 
 .imagens img:hover{
     transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+    box-shadow:
+        0 0 20px rgb(115, 255, 250),
+        0 0 45px rgba(147, 246, 255, 0.9),
+        0 0 70px rgb(179, 252, 255),
+        0 20px 50px rgba(255, 255, 255, 0.6);
 }
 
 /* título das imagens */
@@ -361,6 +365,79 @@ header{
     letter-spacing: 0.5px;
 }
 
+.sessaoplus{
+    background: rgb(213, 230, 230);
+    padding: 100px 20px;
+    text-align: center;
+}
+/*------------Sessao telas------------*/
+
+
+.sessao03{
+    background: rgb(213, 230, 230);
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.sessao03 h1{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 36px;
+    color: #4f4a4d;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+/* texto da seção */
+
+.sessao03 p{
+    max-width: 750px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.7);
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 16px;
+    color: #2b2a2a;
+    padding: 25px 30px;
+    border-radius: 16px;
+    line-height: 1.7;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* grid das imagens */
+
+.imagens{
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 30px;
+}
+
+/* card de cada imagem */
+
+.imagens div{
+    text-align: center;
+}
+
+/* imagens */
+
+.imagens img{
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 18px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+
+/* título das imagens */
+
+.imagens h2{
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 18px;
+    color: #4f4a4d;
+    margin-top: 15px;
+    letter-spacing: 0.5px;
+}
 /*------------Sessao 5------------*/
 
 .sessao5{
